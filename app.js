@@ -7,7 +7,7 @@ const bodyParser = require('body-parser'); // BODY PARSING
 mongoose.connect(
     'mongodb+srv://' +
     process.env.MONGO_PASS + ':' + process.env.MONGO_PASS +
-    '@node-rest-api-test-byh61.mongodb.net/test?retryWrites=true&w=majority',
+    '@cluster0.yy2t0.mongodb.net/main-db?retryWrites=true&w=majority',
     {
         useNewUrlParser : true,
         useUnifiedTopology : true
@@ -26,7 +26,7 @@ app.use(bodyParser.json());
 app.use(( req, res, next ) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', '*');
-    
+
     if ( req.method === 'OPTIONS' ) {
         res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
         return res.status(200).json({});
@@ -34,12 +34,17 @@ app.use(( req, res, next ) => {
     next();
 });
 
-const productRoutes = require('./api/routes/products');
-const orderRoutes = require('./api/routes/orders');
+const billRoutes = require('./api/routes/bills');
+const monthlyBillRoutes = require('./api/routes/monthlybills');
+const taskRoutes = require('./api/routes/tasks');
 
-app.use('/products', productRoutes);
-app.use('/orders', orderRoutes);
+app.use('/bills', billRoutes);
+app.use('/monthlies', monthlyBillRoutes);
+app.use('/tasks', taskRoutes);
 
+app.get('/ping', function ( req, res ) {
+    res.status(200).json({ response : 'Pong!' })
+})
 
 // 404
 app.use(( req, res, next ) => {

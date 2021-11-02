@@ -1,14 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-const Order = require('../models/order');
-const Product = require('../models/product');
+const Task = require('../models/task');
 
-router.get('/',async (req,res) => {
-    Order.find().exec().then(docs => {
+router.get('/list',async (req,res) => {
+    Task.find(req.query).exec().then(docs => {
         res.status(200).json({
             count : docs.length,
-            orders : docs
+            tasks : docs
         })
     }).catch(err => {
         res.status(500).json({
