@@ -6,7 +6,7 @@ const bodyParser = require('body-parser'); // BODY PARSING
 
 mongoose.connect(
   'mongodb+srv://' +
-  process.env.MONGO_PASS + ':' + process.env.MONGO_PASS +
+  process.env.MONGO_USER + ':' + process.env.MONGO_PASS +
   '@cluster0.yy2t0.mongodb.net/main-db?retryWrites=true&w=majority',
   {
     useNewUrlParser : true,
