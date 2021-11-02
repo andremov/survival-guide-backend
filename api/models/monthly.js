@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const productSchema = mongoose.Schema({
+const monthlySchema = mongoose.Schema({
   _id : mongoose.Schema.Types.ObjectId,
   parent : { type : mongoose.Schema.Types.ObjectId, ref : 'bill' },
   value : { type : Number },
@@ -14,4 +14,4 @@ const productSchema = mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('product', productSchema);
+module.exports = mongoose.model('monthly', monthlySchema);

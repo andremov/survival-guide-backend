@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const orderSchema = mongoose.Schema({
+const taskSchema = mongoose.Schema({
   _id : mongoose.Schema.Types.ObjectId,
   name : { type : String, required : true },
   information : { type : String },
@@ -14,4 +14,4 @@ const orderSchema = mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('order', orderSchema);
+module.exports = mongoose.model('task', taskSchema);
