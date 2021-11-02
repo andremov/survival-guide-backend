@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-const Monthly = require('../models/monthlybill');
+const Monthly = require('../models/monthly');
 
 router.get('/list', async ( req, res ) => {
   Monthly.find(req.query).exec().then(docs => {
