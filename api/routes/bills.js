@@ -6,7 +6,7 @@ const Bill = require('../models/bill');
 router.get('/list', async ( req, res ) => {
   Bill.find(req.query).exec().then(docs => {
     res.status(200).json({
-      tasks : docs
+      bills : docs
     });
   }).catch(err => {
     res.status(500).json({

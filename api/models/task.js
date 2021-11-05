@@ -4,7 +4,7 @@ const taskSchema = mongoose.Schema({
   _id : mongoose.Schema.Types.ObjectId,
   name : { type : String, required : true },
   information : { type : String },
-  due_data : { type : Date },
+  due_date : { type : Date },
   done_date : { type : Date },
   status : {
     type : String,

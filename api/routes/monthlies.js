@@ -6,7 +6,7 @@ const Monthly = require('../models/monthly');
 router.get('/list', async ( req, res ) => {
   Monthly.find(req.query).exec().then(docs => {
     res.status(200).json({
-      tasks : docs
+      monthlies : docs
     });
   }).catch(err => {
     res.status(500).json({
