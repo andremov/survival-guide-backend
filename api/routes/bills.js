@@ -15,6 +15,47 @@ router.get('/list', async ( req, res ) => {
   });
 });
 
+router.get('/options/people', async ( req, res ) => {
+  Bill.find().exec().then(docs => {
+    res.status(200).json({
+      options : docs.map(item => item.person_name).filter((value, index, self) => self.indexOf(value) === index)
+    });
+  }).catch(err => {
+    res.status(500).json({
+      error : err
+    });
+  });
+});
+
+router.get('/options/institutions', async ( req, res ) => {
+  Bill.find().exec().then(docs => {
+    res.status(200).json({
+      options : docs.map(item => item.institution).filter((value, index, self) => self.indexOf(value) === index)
+    });
+  }).catch(err => {
+    res.status(500).json({
+      error : err
+    });
+  });
+});router.get('/list', async ( req, res ) => {
+
+  const stages = [
+    {
+      $sort : -1
+    },
+  ];
+
+  Bill.aggregate(stages).then(docs => {
+    res.status(200).json({
+      bills : docs
+    });
+  }).catch(err => {
+    res.status(500).json({
+      error : err
+    });
+  });
+});
+
 router.post('/', async ( req, res ) => {
   const bill = new Bill({
     _id : new mongoose.Types.ObjectId(),
