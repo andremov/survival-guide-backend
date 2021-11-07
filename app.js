@@ -46,6 +46,12 @@ app.get('/ping', function ( req, res ) {
   res.status(200).json({ response : 'Pong!' });
 });
 
+app.get('/monthid', function ( req, res ) {
+  const [ year, month, day ] = new Date().toISOString().split('T')[0].split('-')
+  const month_id = (+month) + ((+year-2010)*12)
+  res.status(200).json({ month_id : month_id });
+});
+
 // 404
 app.use(( req, res, next ) => {
   const error = new Error('Not found');
