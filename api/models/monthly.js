@@ -7,6 +7,7 @@ const monthlySchema = mongoose.Schema( {
 	amount_paid : { type : Number },
 	exp_date : { type : Date },
 	paid_date : { type : Date },
+	month_id: {type: Number, required: true},
 	status : {
 		type : String,
 		required : true,

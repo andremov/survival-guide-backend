@@ -16,10 +16,14 @@ router.get('/list', async ( req, res ) => {
 });
 
 router.post('/', async ( req, res ) => {
+  const [ year, month, day ] = req.body.exp_date.split('-')
+
   const monthly = new Monthly({
     _id : new mongoose.Types.ObjectId(),
+    month_id: (+month) + ((+year-2010)*12),
     ...req.body
   });
+
   monthly.save().then(doc => {
     res.status(200).json(doc);
   }).catch(err => {
