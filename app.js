@@ -4,10 +4,10 @@ const mongoose = require('mongoose');
 const morgan = require('morgan'); // LOGGING
 const bodyParser = require('body-parser'); // BODY PARSING
 
+const CLUSTER = 'cluster0.yy2t0.mongodb.net'
+
 mongoose.connect(
-  'mongodb+srv://' +
-  process.env.MONGO_USER + ':' + process.env.MONGO_PASS +
-  '@cluster0.yy2t0.mongodb.net/main-db?retryWrites=true&w=majority',
+  `mongodb+srv://${ process.env.MONGO_USER }:${process.env.MONGO_PASS}@${CLUSTER}/main-db?retryWrites=true&w=majority`,
   {
     useNewUrlParser : true,
     useUnifiedTopology : true
